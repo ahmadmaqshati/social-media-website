@@ -1,28 +1,43 @@
 import { useState } from 'react';
 import MobileNav from './MobileNav';
 import AuthModal from './AuthModal';
+import AuthButtons from './AuthButtons';
 
 export default function TopNavigation() {
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const links = ['Tarmeez', 'Home', 'Profile']
+    const navigationLinks = ['Tarmeez', 'Home', 'Profile']
     const [activeLink, setActiveLink] = useState('Tarmeez');
-    const [isModalOpen, setModalOpen] = useState(false);
-    const [modalType, setModalType] = useState('login')
+    const [isAuthModalOpen, setAuthModalOpen] = useState(false);
+    const [authModalType, setAuthModalType] = useState('login')
+    const [isTokenExist, setTokenExist] = useState(false)
 
     const toggleMobileMenu = () => { setMobileMenuOpen(!isMobileMenuOpen); };
 
     const toggleModal = () => {
-        setModalOpen(!isModalOpen);
+        setAuthModalOpen(!isAuthModalOpen);
     };
 
-    const linksList = links.map((link, index) => (
+    const navigationLinksToBeRender = navigationLinks.map((link, index) => (
         <a key={index} href="#"
             onClick={() => setActiveLink(link)}
             className={`font-semibold ${activeLink === link ? 'text-blue-600' : 'text-gray-600'}`}>
             {link}
         </a>
     ))
+    function toggleAuthBtns() {
+        const storageToken = localStorage.getItem("token")
+        console.log(storageToken);
+        if (storageToken) {
+            setTokenExist(true)
+        } else {
+            handleLogout()
+            setTokenExist(false)
+        }
 
+    }
+    function handleLogout() {
+        localStorage.removeItem('token')
+    }
     return (
         <>
             <header className="relative inset-x-0 top-0 z-50 mx-3">
@@ -30,14 +45,20 @@ export default function TopNavigation() {
                     <nav className="nav flex items-center justify-between p-6 lg:px-8" aria-label="Global">
                         <div className="flex lg:flex-1">
                             <div className="flex space-x-4">
-                                {linksList}
+                                {navigationLinksToBeRender}
                             </div>
                         </div>
 
-                        {/* Menue Btn */}
+                        {/*Menue Btn :This button will be hidden
+                        on large screens and above */}
                         <div className="flex lg:hidden">
-                            {/*يعني أن العنصر سيكون مخفيًا على الشاشات الكبيرةlg:hidden ان كلاس 
-                     أي لن يظهر على الشاشات التي عرضها أكبر أو يساوي 1024 بكسل  */}
+
+                            {/* 
+                        The hidden class means that the menu element will be hidden
+                        on large screens, meaning it will not appear on screens
+                         whose width is greater than or equal to 1024 pixels.
+                        */}
+
                             <button
                                 onClick={toggleMobileMenu}
                                 type="button"
@@ -52,39 +73,27 @@ export default function TopNavigation() {
 
                         {/* Hide auth buttons on small screens */}
                         <div className="hidden lg:flex sm:ml-3 gap-2">
-                            <button
-                                onClick={() => {
-                                    toggleModal()
-                                    setModalType('login')
-                                }}
-                                type="button"
-                                className="border-[1px] border-slate-800 inline-flex items-center rounded-md px-3 py-2 font-medium text-green-700 shadow-sm hover:bg-indigo-500  hover:text-yellow-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                Login
-                            </button>
-                            <button
-                                onClick={() => {
-                                    toggleModal()
-                                    setModalType('signup')
-                                }}
-                                type="button"
-                                className="border-[1px] border-slate-800 inline-flex items-center rounded-md px-3 py-2 font-medium text-green-700 shadow-sm hover:bg-indigo-500  hover:text-yellow-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                Signup
-                            </button>
+                            <AuthButtons isTokenExist={isTokenExist} toggleModal={toggleModal}
+                                setAuthModalType={setAuthModalType} handleLogout={handleLogout}
+                                toggleAuthBtns={toggleAuthBtns} />
                         </div>
                         {/* ==Hide auth buttons on small screens== */}
+
                     </nav>
                 </div>
                 {isMobileMenuOpen && (
                     <MobileNav
                         toggleMobileMenu={toggleMobileMenu}
-                        linksList={linksList}
+                        navigationLinksToBeRender={navigationLinksToBeRender}
                         toggleModal={toggleModal}
-                        setModalType={setModalType}
+                        setAuthModalType={setAuthModalType}
+                        isTokenExist={isTokenExist}
                     />
                 )}
             </header>
-            <AuthModal toggleModal={toggleModal} isModalOpen={isModalOpen}
-                modalType={modalType} setModalType={setModalType}
+            <AuthModal toggleModal={toggleModal} isAuthModalOpen={isAuthModalOpen}
+                authModalType={authModalType} setAuthModalType={setAuthModalType}
+                toggleAuthBtns={toggleAuthBtns}
             />
         </>
     );

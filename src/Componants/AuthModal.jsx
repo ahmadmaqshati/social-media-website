@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-export default function AuthModal({ toggleModal, isModalOpen, modalType }) {
+export default function AuthModal({ toggleModal, isAuthModalOpen, authModalType, toggleAuthBtns }) {
     const [loginInputs, setLoginInputs] = useState({
         usenameInput: 'ahamdyarob',
         passwordInput: '123456'
@@ -19,27 +19,31 @@ export default function AuthModal({ toggleModal, isModalOpen, modalType }) {
             "password": loginInputs.passwordInput
 
         }
+        /* api request */
         axios.post('https://tarmeezAcademy.com/api/v1/login', params)
             .then((res) => {
                 const token = res.data.token
                 console.log(token);
+                localStorage.setItem("token", token)
+                toggleAuthBtns()
             })
         toggleModal()
     };
+    /* ==api request== */
 
     return (
         <>
-            {isModalOpen && (
+            {isAuthModalOpen && (
                 <div className="animate-fade-down animate-delay-150 animate-once fixed inset-0 flex items-center justify-center z-50">
                     <div onClick={toggleModal} className="absolute inset-0 bg-black opacity-50"></div>
                     <div className="mx-3 bg-white rounded-lg p-8 z-50 w-96 bg-gradient-to-br from-teal-400 to-gray-700">
                         <h2 className="tracking-normal text-shadow text-shadow-custom text-2xl font-bold mb-4">
-                            {modalType == 'login' ? "Login" : "Signup"}
+                            {authModalType == 'login' ? "Login" : "Signup"}
                         </h2>
                         {/* Form */}
                         <form onSubmit={handleLoginSubmit}>
 
-                            {modalType !== 'login' && (
+                            {authModalType !== 'login' && (
                                 <>
                                     <InputField label="File :" type="file" />
                                     <InputField label="Name :" type="email" />
@@ -74,7 +78,7 @@ export default function AuthModal({ toggleModal, isModalOpen, modalType }) {
                             <button
                                 type="submit"
                                 className="tracking-widest bg-blue-500 text-white px-4 py-2 rounded transition duration-300 transform hover:bg-blue-600 hover:scale-105">
-                                {modalType == 'login' ? 'Login' : 'Signup'}
+                                {authModalType == 'login' ? 'Login' : 'Signup'}
                             </button>
 
                         </form>
