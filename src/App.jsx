@@ -18,12 +18,7 @@ export default function App() {
 
   return (
     <div>
-      {/*  <button
-        onClick={() => setDarkMode(!darkMode)}
-        className="p-2 bg-blue-500 text-white rounded"
-      >
-        Toggle Dark Mode
-      </button> */}
+
       <TopNav />
 
       <MainPosts />
