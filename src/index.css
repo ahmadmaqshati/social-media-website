@@ -1,3 +1,22 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+/* ./src/index.css */
+
+/* body {
+    @apply bg-white text-black;
+}
+
+.dark body {
+    @apply bg-gray-800 text-white;
+}
+
+
+
+.test {
+    @apply bg-white text-black;
+}
+
+.dark .test {
+    @apply bg-gray-800 text-white;
+} */

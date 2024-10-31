@@ -1,7 +1,7 @@
 export default function MainPosts() {
 
     return (
-        <div className="max-w-full rounded overflow-hidden mt-10 mx-3 mb-7">
+        <div className="animate-fade-left animate-delay-300 animate-once max-w-full rounded overflow-hidden mt-10 mx-3 mb-7">
             <div style={{ background: "#F9F7FB" }} className='container mx-auto max-w-5xl'>
                 {/* post-header */}
                 <div className='flex items-center gap-1 py-2 px-4' /* style={{ padding: "7px 15px", background: "#F8F6F8", display: "flex", gap: "5px", alignItems: "center" }} */>
@@ -15,7 +15,7 @@ export default function MainPosts() {
                 {/* post-content */}
                 <div className='bg-white pt-2'>
                     <div className="" style={{ padding: "7px 15px 0", height: "400px", }}>
-                        <img style={{ height: "100%", objectFit: "cover" }} className="w-full" src="https://images.pexels.com/photos/27351134/pexels-photo-27351134/free-photo-of-a-boat-by-the-pier.jpeg?auto=compress&cs=tinysrgb&w=150&lazy=load 150w, https://images.pexels.com/photos/27351134/pexels-photo-27351134/free-photo-of-a-boat-by-the-pier.jpeg?auto=compress&cs=tinysrgb&w=300&lazy=load 300w, https://images.pexels.com/photos/27351134/pexels-photo-27351134/free-photo-of-a-boat-by-the-pier.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load 400w, https://images.pexels.com/photos/27351134/pexels-photo-27351134/free-photo-of-a-boat-by-the-pier.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load 600w, https://images.pexels.com/photos/27351134/pexels-photo-27351134/free-photo-of-a-boat-by-the-pier.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load 800w, https://images.pexels.com/photos/27351134/pexels-photo-27351134/free-photo-of-a-boat-by-the-pier.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load 1200w, https://images.pexels.com/photos/27351134/pexels-photo-27351134/free-photo-of-a-boat-by-the-pier.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load 1600w" alt="Card image" />
+                        <img style={{ height: "100%", objectFit: "cover" }} className=" w-full" src="https://images.pexels.com/photos/27351134/pexels-photo-27351134/free-photo-of-a-boat-by-the-pier.jpeg?auto=compress&cs=tinysrgb&w=150&lazy=load 150w, https://images.pexels.com/photos/27351134/pexels-photo-27351134/free-photo-of-a-boat-by-the-pier.jpeg?auto=compress&cs=tinysrgb&w=300&lazy=load 300w, https://images.pexels.com/photos/27351134/pexels-photo-27351134/free-photo-of-a-boat-by-the-pier.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load 400w, https://images.pexels.com/photos/27351134/pexels-photo-27351134/free-photo-of-a-boat-by-the-pier.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load 600w, https://images.pexels.com/photos/27351134/pexels-photo-27351134/free-photo-of-a-boat-by-the-pier.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load 800w, https://images.pexels.com/photos/27351134/pexels-photo-27351134/free-photo-of-a-boat-by-the-pier.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load 1200w, https://images.pexels.com/photos/27351134/pexels-photo-27351134/free-photo-of-a-boat-by-the-pier.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load 1600w" alt="Card image" />
 
                     </div>
 

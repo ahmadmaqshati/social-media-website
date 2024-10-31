@@ -1,21 +1,34 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+const defaultTheme = require('tailwindcss/defaultTheme')
+module.exports = {
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  darkMode: false, // or 'media' or 'class'
   theme: {
+    extend: {},
+  },
+  variants: {
     extend: {
-      backgroundColor: {
-        topnav: '#F9F8F9'
-        /* customColor: '#24385d',
-        date: '#ffffffd1',
-        temp: '#fff',
-        sky: '#C6F0FF',
-        degres: '#C6F0FF' */
-      }
+      textShadow: {
+        'custom': '0 2px 20px rgba(0, 0, 0, 0.5)', // إضافة تأثير ظل مخصص
+      },
+      variants: {
+        textShadow: ['responsive', 'hover', 'focus'],
+      },
+      fontFamily: {
+        sans: ['InterVariable', ...defaultTheme.fontFamily.sans],
+      },
     },
   },
-  plugins: [],
-}
+  /* plugins: [], */
+  plugins: [
+    require('tailwindcss-animated'),
+    function ({ addUtilities }) {
+      addUtilities({
+        '.text-shadow-custom': {
+          textShadow: '0 2px 20px rgba(0, 0, 0, 0.5)',
+        },
+      })
+    }
+  ],
+};
+
 

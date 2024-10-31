@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  letter-spacing: 0.6px;
 }
 
 body {
@@ -22,3 +23,26 @@ body {
 .a:hover {
   color: rgb(30, 30, 174) !important;
 }
+
+
+
+@keyframes wiggle-more {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-wiggle-more {
+  animation: wiggle-more 1s ease-in-out;
+}
+
+/* .animate-rotate-y {
+  animation: fade-down 4s ease-in-out;
+
+} */
