@@ -3,13 +3,13 @@ import MobileNav from './MobileNav';
 import AuthModal from './AuthModal';
 
 export default function TopNavigation() {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const links = ['Tarmeez', 'Home', 'Profile']
     const [activeLink, setActiveLink] = useState('Tarmeez');
     const [isModalOpen, setModalOpen] = useState(false);
     const [modalType, setModalType] = useState('login')
 
-    const toggleMobileMenu = () => { setIsMobileMenuOpen(!isMobileMenuOpen); };
+    const toggleMobileMenu = () => { setMobileMenuOpen(!isMobileMenuOpen); };
 
     const toggleModal = () => {
         setModalOpen(!isModalOpen);
@@ -39,7 +39,7 @@ export default function TopNavigation() {
                             {/*يعني أن العنصر سيكون مخفيًا على الشاشات الكبيرةlg:hidden ان كلاس 
                      أي لن يظهر على الشاشات التي عرضها أكبر أو يساوي 1024 بكسل  */}
                             <button
-                                onClick={toggleMobileMenu} // استبدل anotherFunction بالدالة المناسبة
+                                onClick={toggleMobileMenu}
                                 type="button"
                                 className="w-10 p-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150"
                             >
