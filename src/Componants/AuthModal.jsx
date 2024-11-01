@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-export default function AuthModal({ toggleModal, isAuthModalOpen, authModalType, toggleAuthBtns }) {
+export default function AuthModal({ toggleModal, isAuthModalOpen, authModalType, setTokenExist }) {
     const [loginInputs, setLoginInputs] = useState({
         usenameInput: 'ahamdyarob',
         passwordInput: '123456'
@@ -25,7 +25,7 @@ export default function AuthModal({ toggleModal, isAuthModalOpen, authModalType,
                 const token = res.data.token
                 console.log(token);
                 localStorage.setItem("token", token)
-                toggleAuthBtns()
+                setTokenExist(true)
             })
         toggleModal()
     };

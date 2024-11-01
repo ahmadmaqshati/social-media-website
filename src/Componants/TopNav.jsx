@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MobileNav from './MobileNav';
 import AuthModal from './AuthModal';
 import AuthButtons from './AuthButtons';
@@ -9,12 +9,23 @@ export default function TopNavigation() {
     const [activeLink, setActiveLink] = useState('Tarmeez');
     const [isAuthModalOpen, setAuthModalOpen] = useState(false);
     const [authModalType, setAuthModalType] = useState('login')
-    const [isTokenExist, setTokenExist] = useState(false)
+    const [isTokenExist, setTokenExist] = useState(false);
 
     const toggleMobileMenu = () => { setMobileMenuOpen(!isMobileMenuOpen); };
 
     const toggleModal = () => {
         setAuthModalOpen(!isAuthModalOpen);
+    };
+
+    useEffect(() => {
+        // تحقق من وجود التوكن عند تحميل المكون
+        setTokenExist(true);
+    }, []);
+
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        setTokenExist(false);
     };
 
     const navigationLinksToBeRender = navigationLinks.map((link, index) => (
@@ -24,20 +35,7 @@ export default function TopNavigation() {
             {link}
         </a>
     ))
-    function toggleAuthBtns() {
-        const storageToken = localStorage.getItem("token")
-        console.log(storageToken);
-        if (storageToken) {
-            setTokenExist(true)
-        } else {
-            handleLogout()
-            setTokenExist(false)
-        }
 
-    }
-    function handleLogout() {
-        localStorage.removeItem('token')
-    }
     return (
         <>
             <header className="relative inset-x-0 top-0 z-50 mx-3">
@@ -52,13 +50,6 @@ export default function TopNavigation() {
                         {/*Menue Btn :This button will be hidden
                         on large screens and above */}
                         <div className="flex lg:hidden">
-
-                            {/* 
-                        The hidden class means that the menu element will be hidden
-                        on large screens, meaning it will not appear on screens
-                         whose width is greater than or equal to 1024 pixels.
-                        */}
-
                             <button
                                 onClick={toggleMobileMenu}
                                 type="button"
@@ -66,16 +57,18 @@ export default function TopNavigation() {
                             >
                                 <span className="sr-only">Another Action</span>
                                 <img src="https://www.svgrepo.com/show/415613/menu-basic-other.svg" alt="" />
-
                             </button>
                         </div>
                         {/* ==Menue Btn== */}
 
                         {/* Hide auth buttons on small screens */}
                         <div className="hidden lg:flex sm:ml-3 gap-2">
-                            <AuthButtons isTokenExist={isTokenExist} toggleModal={toggleModal}
-                                setAuthModalType={setAuthModalType} handleLogout={handleLogout}
-                                toggleAuthBtns={toggleAuthBtns} />
+                            <AuthButtons
+                                toggleModal={toggleModal}
+                                setAuthModalType={setAuthModalType}
+                                isTokenExist={isTokenExist}
+                                handleLogout={handleLogout}
+                            />
                         </div>
                         {/* ==Hide auth buttons on small screens== */}
 
@@ -88,13 +81,23 @@ export default function TopNavigation() {
                         toggleModal={toggleModal}
                         setAuthModalType={setAuthModalType}
                         isTokenExist={isTokenExist}
+                        handleLogout={handleLogout}
                     />
                 )}
             </header>
-            <AuthModal toggleModal={toggleModal} isAuthModalOpen={isAuthModalOpen}
-                authModalType={authModalType} setAuthModalType={setAuthModalType}
-                toggleAuthBtns={toggleAuthBtns}
+            <AuthModal toggleModal={toggleModal}
+                isAuthModalOpen={isAuthModalOpen}
+                authModalType={authModalType}
+                setAuthModalType={setAuthModalType}
+                setTokenExist={setTokenExist}
             />
         </>
     );
 }
+
+
+
+
+
+
+
