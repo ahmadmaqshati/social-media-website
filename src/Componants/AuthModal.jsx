@@ -3,7 +3,7 @@ import axios from 'axios';
 // Import toast for displaying notifications
 import { toast } from 'react-toastify';
 
-export default function AuthModal({ toggleModal, isAuthModalOpen, authModalType, setTokenExist, notifyLoginSuccess }) {
+export default function AuthModal({ baseUrl, toggleModal, isAuthModalOpen, authModalType, setTokenExist, notifyLoginSuccess }) {
     const [loginInputs, setLoginInputs] = useState({
         usernameInput: 'ahamdyarob',
         passwordInput: '123456'
@@ -23,7 +23,7 @@ export default function AuthModal({ toggleModal, isAuthModalOpen, authModalType,
         };
 
         try {
-            const res = await axios.post('https://tarmeezAcademy.com/api/v1/login', params); // Send login request
+            const res = await axios.post(`${baseUrl}login`, params); // Send login request
             const token = res.data.token;
             localStorage.setItem("token", token);
             // Update token state to indicate user is logged in

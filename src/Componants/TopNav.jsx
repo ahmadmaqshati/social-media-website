@@ -7,7 +7,7 @@ import AuthButtons from './AuthButtons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function TopNavigation() {
+export default function TopNavigation({ baseUrl }) {
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const navigationLinks = ['Tarmeez', 'Home', 'Profile']
     const [activeLink, setActiveLink] = useState('Tarmeez');
@@ -96,7 +96,8 @@ export default function TopNavigation() {
                     />
                 )}
             </header>
-            <AuthModal toggleModal={toggleModal}
+            <AuthModal baseUrl={baseUrl}
+                toggleModal={toggleModal}
                 isAuthModalOpen={isAuthModalOpen}
                 authModalType={authModalType}
                 setAuthModalType={setAuthModalType}
