@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-export default function AuthModal({ toggleModal, isAuthModalOpen, authModalType, setTokenExist }) {
+// Import toast for displaying notifications
+import { toast } from 'react-toastify';
+
+export default function AuthModal({ toggleModal, isAuthModalOpen, authModalType, setTokenExist, notifyLoginSuccess }) {
     const [loginInputs, setLoginInputs] = useState({
-        usenameInput: 'ahamdyarob',
+        usernameInput: 'ahamdyarob',
         passwordInput: '123456'
     })
     const InputField = ({ label, type }) => (
@@ -12,24 +15,27 @@ export default function AuthModal({ toggleModal, isAuthModalOpen, authModalType,
         </div>
     );
 
-    const handleLoginSubmit = (event) => {
+    async function handleLoginSubmit(event) {
         event.preventDefault();
         const params = {
-            "username": loginInputs.usenameInput,
+            "username": loginInputs.usernameInput,
             "password": loginInputs.passwordInput
+        };
 
+        try {
+            const res = await axios.post('https://tarmeezAcademy.com/api/v1/login', params); // Send login request
+            const token = res.data.token;
+            localStorage.setItem("token", token);
+            // Update token state to indicate user is logged in
+            setTokenExist(true);
+            notifyLoginSuccess(); // Notify login success
+            toggleModal(); // Close the authentication modal
+        } catch (error) {
+            console.error("Login failed:", error.response.data.message);
+            // Display a success message on the screen after login
+            toast.error(`Login failed:${error.response.data.message} Please try again.`, { position: 'top-right', autoClose: 2000 });
         }
-        /* api request */
-        axios.post('https://tarmeezAcademy.com/api/v1/login', params)
-            .then((res) => {
-                const token = res.data.token
-                console.log(token);
-                localStorage.setItem("token", token)
-                setTokenExist(true)
-            })
-        toggleModal()
-    };
-    /* ==api request== */
+    }
 
     return (
         <>
@@ -53,9 +59,9 @@ export default function AuthModal({ toggleModal, isAuthModalOpen, authModalType,
                             <div className="mb-4">
                                 <label className="tracking-wide block text-gray-700 mb-2">UserName :</label>
                                 <input
-                                    value={loginInputs.usenameInput}
+                                    value={loginInputs.usernameInput}
                                     onChange={(e) => {
-                                        setLoginInputs({ ...loginInputs, usenameInput: e.target.value })
+                                        setLoginInputs({ ...loginInputs, usernameInput: e.target.value })
                                     }}
                                     type="text"
                                     className="border border-gray-300 rounded py-2 px-3 w-full"

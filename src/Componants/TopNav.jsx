@@ -3,6 +3,10 @@ import MobileNav from './MobileNav';
 import AuthModal from './AuthModal';
 import AuthButtons from './AuthButtons';
 
+//Import toast notification components and styles
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function TopNavigation() {
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const navigationLinks = ['Tarmeez', 'Home', 'Profile']
@@ -18,14 +22,21 @@ export default function TopNavigation() {
     };
 
     useEffect(() => {
-        // تحقق من وجود التوكن عند تحميل المكون
-        setTokenExist(true);
+        //Check for token existence in localStorage when the component mounts.
+        const token = localStorage.getItem('token');
+        setTokenExist(!!token)
     }, []);
-
 
     const handleLogout = () => {
         localStorage.removeItem("token");
+        // Update the token state to indicate the user is no longer logged in
         setTokenExist(false);
+        // Display a success message on the screen after logout
+        toast.success('Login Successfully', {
+            position: 'top-center',
+            autoClose: 4000,
+        });
+
     };
 
     const navigationLinksToBeRender = navigationLinks.map((link, index) => (
@@ -59,7 +70,7 @@ export default function TopNavigation() {
                                 <img src="https://www.svgrepo.com/show/415613/menu-basic-other.svg" alt="" />
                             </button>
                         </div>
-                        {/* ==Menue Btn== */}
+                        {/* ====================Menue Btn================== */}
 
                         {/* Hide auth buttons on small screens */}
                         <div className="hidden lg:flex sm:ml-3 gap-2">
@@ -90,7 +101,13 @@ export default function TopNavigation() {
                 authModalType={authModalType}
                 setAuthModalType={setAuthModalType}
                 setTokenExist={setTokenExist}
+                notifyLoginSuccess={() => toast.success('Login Successfully', {
+                    position: 'top-center',
+                    autoClose: 4000,
+                })}
             />
+            <ToastContainer />
+
         </>
     );
 }
