@@ -33,7 +33,7 @@ export default function AuthModal({ baseUrl, toggleModal, isAuthModalOpen, authM
         } catch (error) {
             console.error("Login failed:", error.response.data.message);
             // Display a success message on the screen after login
-            toast.error(`Login failed:${error.response.data.message} Please try again.`, { position: 'top-right', autoClose: 2000 });
+            toast.error(`Login failed:${error.response.data.message} Please try again.`, { position: 'top-right', autoClose: 4000 });
         }
     }
 

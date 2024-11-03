@@ -42,7 +42,22 @@ body {
   animation: wiggle-more 1s ease-in-out;
 }
 
-/* .animate-rotate-y {
-  animation: fade-down 4s ease-in-out;
+@media (max-width: 389px) {
+  .profile {
+    flex-wrap: wrap;
+  }
 
-} */
+  .profile-img {
+    object-fit: fill;
+  }
+}
+
+@media (min-width: 390px) and (max-width: 499px) {
+  .profile-img {
+    object-fit: fill;
+  }
+
+  #main-info {
+    font-size: 0.88rem;
+  }
+}

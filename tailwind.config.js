@@ -16,6 +16,10 @@ module.exports = {
       fontFamily: {
         sans: ['InterVariable', ...defaultTheme.fontFamily.sans],
       },
+      fontWeight: {
+        'hairline': 100, // وزن خط مخصص
+
+      },
     },
   },
   /* plugins: [], */

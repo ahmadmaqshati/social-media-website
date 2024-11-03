@@ -5,7 +5,10 @@ export default function MainPosts({ post }) {
             <div style={{ background: "#F9F7FB" }} className='container mx-auto max-w-5xl'>
                 {/* post-header */}
                 <div className='flex items-center gap-1 py-2 px-4' /* style={{ padding: "7px 15px", background: "#F8F6F8", display: "flex", gap: "5px", alignItems: "center" }} */>
-                    <img className='object-cover h-10 w-10 rounded-full' src="https://tarmeezacademy.com/images/users/bYkNHefp6nwt6cp.jpg" alt="" />
+
+                    {typeof post.author.profile_image === 'string' ? (
+                        <img className='object-cover h-10 w-10 rounded-full' src={post.author.profile_image} alt="" />
+                    ) : null}
                     <div className="font-bold">{post.title}</div>
                 </div>
                 {/*==post-header ==*/}
@@ -14,10 +17,9 @@ export default function MainPosts({ post }) {
 
                 {/* post-content */}
                 <div className='bg-white pt-2'>
-                    <div className="" style={{ padding: "7px 15px 0", height: "400px", }}>
-                        <img style={{ height: "100%", objectFit: "cover" }} className=" w-full" src={post.image} />
-
-                    </div>
+                    {typeof post.image === 'string' ? (
+                        <img style={{ height: "100%", objectFit: "cover" }} className="w-full" src={post.image} alt="" />
+                    ) : null}
 
                     <div className="" style={{ padding: "0px 15px" }}>
                         <span className='text-gray-500'>{post.createdAt}</span>

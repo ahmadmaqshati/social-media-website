@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react';
 import './App.css'
-import MainPosts from './Componants/MainPosts';
+import MainPosts from './Pages/PostsPages/MainPosts';
 import TopNav from './Componants/TopNav';
+import Profile from './Pages/ProfilePage/Profile';
+//Libraries
 import axios from 'axios';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+
+
 
 export default function App() {
   const [postsList, setPostsList] = useState([])
@@ -30,12 +36,18 @@ export default function App() {
 
   return (
     <>
-      <TopNav baseUrl={baseUrl} />
+      <BrowserRouter>
+        <TopNav baseUrl={baseUrl} />
+        <Routes>
+          <Route path='/' element={renderedPosts} />
+          <Route path='/home' element={renderedPosts} />
+          <Route path='/profile' element={<Profile />} />
 
-      {/* Rendering the list of posts */}
-      {renderedPosts}
+        </Routes>
+      </BrowserRouter>
 
     </>
+
   );
 }
 
