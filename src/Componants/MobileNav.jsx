@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import AuthButtons from './AuthButtons';
+import NavigationLinks from './NavigationLinks';
 
-export default function MobileNav({ toggleMobileMenu, navigationLinksToBeRender, isTokenExist, handleLogout, toggleModal, setAuthModalType, userData }) {
+export default function MobileNav({ toggleMobileMenu, isTokenExist, handleLogout, toggleModal, setAuthModalType, userData }) {
     const [isCloseBtnAnimating, setIsCloseBtnAnimating] = useState(false);
 
     const handleCloseMenu = () => {
@@ -34,7 +35,7 @@ export default function MobileNav({ toggleMobileMenu, navigationLinksToBeRender,
                 <div className="mt-6 flow-root">
                     <div className="-my-6 divide-y divide-gray-500/10">
                         <div className="py-6 flex gap-4 flex-col items-end">
-                            {navigationLinksToBeRender}
+                            <NavigationLinks />
                         </div>
                         <div className="py-6">
                             {/* Auth Btns on Mobile */}

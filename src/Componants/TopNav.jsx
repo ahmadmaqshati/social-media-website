@@ -5,16 +5,11 @@ import AuthButtons from './AuthButtons';
 //Libraries
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from 'react-router-dom';
+import NavigationLinks from './NavigationLinks';
 
 
 export default function TopNavigation({ baseUrl }) {
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const navigationLinks = [
-        { name: 'Tarmeez', path: '/' },
-        { name: 'Home', path: '/home' },
-        { name: 'Profile', path: '/profile' }
-    ];
     const [activeLink, setActiveLink] = useState('Tarmeez');
     const [isAuthModalOpen, setAuthModalOpen] = useState(false);
     const [authModalType, setAuthModalType] = useState('login')
@@ -57,19 +52,6 @@ export default function TopNavigation({ baseUrl }) {
         });
     };
 
-    const navigationLinksToBeRender = navigationLinks.map((link, index) => (
-        <Link
-            key={index}
-            to={link.path}
-            onClick={() => {
-                setActiveLink(link.name)
-                setMobileMenuOpen(false)
-            }}
-            className={`font-semibold ${activeLink === link.name ? 'text-blue-600' : 'text-gray-600'}`}>
-            {link.name}
-        </Link>
-    ))
-
     return (
         <>
             <header className="sticky inset-x-0 top-0 z-50 mx-6">
@@ -77,7 +59,10 @@ export default function TopNavigation({ baseUrl }) {
                     <nav className="shadow-md nav flex items-center justify-between p-6 lg:px-8" aria-label="Global">
                         <div className="flex lg:flex-1">
                             <div className="flex space-x-4">
-                                {navigationLinksToBeRender}
+                                <NavigationLinks
+                                    activeLink={activeLink}
+                                    setActiveLink={setActiveLink}
+                                />
                             </div>
                         </div>
 
@@ -113,7 +98,6 @@ export default function TopNavigation({ baseUrl }) {
                 {isMobileMenuOpen && (
                     <MobileNav
                         toggleMobileMenu={toggleMobileMenu}
-                        navigationLinksToBeRender={navigationLinksToBeRender}
                         toggleModal={toggleModal}
                         setAuthModalType={setAuthModalType}
                         isTokenExist={isTokenExist}
