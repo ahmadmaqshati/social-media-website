@@ -7,9 +7,6 @@ import Profile from './Pages/ProfilePage/Profile';
 import axios from 'axios';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-
-
-
 export default function App() {
   const [postsList, setPostsList] = useState([])
   const baseUrl = 'https://tarmeezAcademy.com/api/v1/'

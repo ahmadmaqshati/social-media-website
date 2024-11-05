@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-// Import toast for displaying notifications
 import { toast } from 'react-toastify';
 
-export default function AuthModal({ baseUrl, toggleModal, isAuthModalOpen, authModalType, setTokenExist, notifyLoginSuccess }) {
+export default function AuthModal({ baseUrl, toggleModal, isAuthModalOpen, authModalType, setTokenExist, notifyLoginSuccess, setUserData, userData }) {
     const [loginInputs, setLoginInputs] = useState({
         usernameInput: 'ahamdyarob',
         passwordInput: '123456'
@@ -24,15 +23,25 @@ export default function AuthModal({ baseUrl, toggleModal, isAuthModalOpen, authM
 
         try {
             const res = await axios.post(`${baseUrl}login`, params); // Send login request
-            const token = res.data.token;
+
+            // Destructure 'token' and 'user' objects from the response data
+            const { token, user } = res.data;
+
+            // Destructure 'username' and 'profile_image' from the 'user' object
+            const { username, profile_image } = user;
+
             localStorage.setItem("token", token);
-            // Update token state to indicate user is logged in
+            localStorage.setItem("userData", JSON.stringify(user))
+
+            // Update token state to true to indicate user is logged in
             setTokenExist(true);
-            notifyLoginSuccess(); // Notify login success
-            toggleModal(); // Close the authentication modal
+            // Update the user data state
+            setUserData({ username, profile_image })
+
+            notifyLoginSuccess(); // Notify the user of a successful login
+            toggleModal();  // Close the authentication modal
         } catch (error) {
             console.error("Login failed:", error.response.data.message);
-            // Display a success message on the screen after login
             toast.error(`Login failed:${error.response.data.message} Please try again.`, { position: 'top-right', autoClose: 4000 });
         }
     }
@@ -42,7 +51,7 @@ export default function AuthModal({ baseUrl, toggleModal, isAuthModalOpen, authM
             {isAuthModalOpen && (
                 <div className="animate-fade-down animate-delay-150 animate-once fixed inset-0 flex items-center justify-center z-50">
                     <div onClick={toggleModal} className="absolute inset-0 bg-black opacity-50"></div>
-                    <div className="mx-3 bg-white rounded-lg p-8 z-50 w-96 bg-gradient-to-br from-teal-400 to-gray-700">
+                    <div className="mx-6 bg-white rounded-lg p-8 z-50 w-96 bg-gradient-to-br from-teal-400 to-gray-700">
                         <h2 className="tracking-normal text-shadow text-shadow-custom text-2xl font-bold mb-4">
                             {authModalType == 'login' ? "Login" : "Signup"}
                         </h2>
