@@ -7,12 +7,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NavigationLinks from './NavigationLinks';
 
-
 export default function TopNavigation({ baseUrl }) {
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeLink, setActiveLink] = useState('Tarmeez');
     const [isAuthModalOpen, setAuthModalOpen] = useState(false);
-    const [authModalType, setAuthModalType] = useState('login')
+    const [clickedButton, setClickedButton] = useState('login')
     const [isTokenExist, setTokenExist] = useState(false);
     const [userData, setUserData] = useState({
         username: '',
@@ -29,7 +28,7 @@ export default function TopNavigation({ baseUrl }) {
     useEffect(() => {
         //Check for token existence in localStorage when the component mounts.
         const token = localStorage.getItem('token');
-        setTokenExist(!!token)
+        setTokenExist(Boolean(token))
 
         // If token exists, check if userData is also stored
         const storedUserData = JSON.parse(localStorage.getItem('userData'));
@@ -84,7 +83,8 @@ export default function TopNavigation({ baseUrl }) {
                         <div className="hidden lg:flex sm:ml-3 gap-2">
                             <AuthButtons
                                 toggleModal={toggleModal}
-                                setAuthModalType={setAuthModalType}
+                                /*  clickedButton={clickedButton} */
+                                setClickedButton={setClickedButton}
                                 isTokenExist={isTokenExist}
                                 handleLogout={handleLogout}
                                 userData={userData}
@@ -99,18 +99,17 @@ export default function TopNavigation({ baseUrl }) {
                     <MobileNav
                         toggleMobileMenu={toggleMobileMenu}
                         toggleModal={toggleModal}
-                        setAuthModalType={setAuthModalType}
                         isTokenExist={isTokenExist}
                         handleLogout={handleLogout}
                         userData={userData}
+                        setClickedButton={setClickedButton}
                     />
                 )}
             </header>
             <AuthModal baseUrl={baseUrl}
                 toggleModal={toggleModal}
                 isAuthModalOpen={isAuthModalOpen}
-                authModalType={authModalType}
-                setAuthModalType={setAuthModalType}
+                clickedButton={clickedButton}
                 setTokenExist={setTokenExist}
                 userData={userData}
                 setUserData={setUserData}

@@ -1,6 +1,7 @@
 import React from 'react';
+import AuthModal from './AuthModal';
 
-export default function AuthButtons({ isTokenExist, toggleModal, setAuthModalType, handleLogout, userData }) {
+export default function AuthButtons({ isTokenExist, toggleModal, setClickedButton, handleLogout, userData }) {
     // Function to render auth buttons based on the user's token status
     function ControlrenderAuthBtns() {
         if (isTokenExist) {
@@ -31,8 +32,8 @@ export default function AuthButtons({ isTokenExist, toggleModal, setAuthModalTyp
                 <>
                     <button
                         onClick={() => {
+                            setClickedButton('login')
                             toggleModal()
-                            setAuthModalType('login')
                         }}
                         type="button"
                         className="border-[1px] border-slate-800 inline-flex items-center rounded-md px-3 py-2 font-medium text-green-700 shadow-sm hover:bg-indigo-500  hover:text-yellow-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 animate-fade-down animate-delay-300 animate-once">
@@ -40,8 +41,8 @@ export default function AuthButtons({ isTokenExist, toggleModal, setAuthModalTyp
                     </button>
                     <button
                         onClick={() => {
+                            setClickedButton('signup')
                             toggleModal()
-                            setAuthModalType('signup')
                         }}
                         type="button"
                         className="border-[1px] border-slate-800 inline-flex items-center rounded-md px-3 py-2 font-medium text-green-700 shadow-sm hover:bg-indigo-500  hover:text-yellow-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 animate-fade-down animate-delay-300 animate-once">

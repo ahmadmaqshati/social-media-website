@@ -2,7 +2,7 @@ import { useState } from 'react';
 import AuthButtons from './AuthButtons';
 import NavigationLinks from './NavigationLinks';
 
-export default function MobileNav({ toggleMobileMenu, isTokenExist, handleLogout, toggleModal, setAuthModalType, userData }) {
+export default function MobileNav({ toggleMobileMenu, isTokenExist, handleLogout, toggleModal, setAuthModalType, userData, setClickedButton }) {
     const [isCloseBtnAnimating, setIsCloseBtnAnimating] = useState(false);
 
     const handleCloseMenu = () => {
@@ -40,7 +40,7 @@ export default function MobileNav({ toggleMobileMenu, isTokenExist, handleLogout
                         <div className="py-6">
                             {/* Auth Btns on Mobile */}
                             <div className="flex gap-2 sm:flex justify-end">
-                                <AuthButtons isTokenExist={isTokenExist} handleLogout={handleLogout} toggleModal={toggleModal} setAuthModalType={setAuthModalType} userData={userData} />
+                                <AuthButtons setClickedButton={setClickedButton} isTokenExist={isTokenExist} handleLogout={handleLogout} toggleModal={toggleModal} setAuthModalType={setAuthModalType} userData={userData} />
 
                             </div>
                             {/* ==Auth Btns on Mobile== */}
