@@ -1,6 +1,7 @@
-import { useState } from "react";
 import axios from "axios";
-export default function LoginModal({ toggleModal, setTokenExist, setUserData, notifyLoginSuccess }) {
+import { AuthBtnsContext } from "../contexts/AuthBtnsContext";
+import { useState, useContext } from "react";
+export default function LoginModal({ /* handleLoginSubmit, toggleModal, setTokenExist, setUserData, notifyLoginSuccess  */ }) {
     const [loginInputs, setLoginInputs] = useState({
         usernameInput: 'ahamdyarob',
         passwordInput: '123456'
@@ -17,6 +18,17 @@ export default function LoginModal({ toggleModal, setTokenExist, setUserData, no
         to update the correct field in the state */
     };
 
+
+    // Use context to access authentication-related information and functions
+    // Destructure necessary values and functions from AuthBtnsContext 
+    const {
+        setIsTokenExist,
+        toggleModal,
+        setUserData,
+        notifyLoginSuccess
+    } = useContext(AuthBtnsContext);
+
+
     async function handleLoginSubmit(event) {
         event.preventDefault();
         const params = {
@@ -26,34 +38,35 @@ export default function LoginModal({ toggleModal, setTokenExist, setUserData, no
 
         const baseUrl = 'https://tarmeezAcademy.com/api/v1/'
 
-        try {
-            const res = await axios.post(`${baseUrl}login`, params); // Send login request
+        /* try { */
+        const res = await axios.post(`${baseUrl}login`, params); // Send login request
 
-            // Destructure 'token' and 'user' objects from the response data
-            const { token, user } = res.data;
+        // Destructure 'token' and 'user' objects from the response data
+        const { token, user } = res.data;
 
-            // Destructure 'username' and 'profile_image' from the 'user' object
-            const { username, profile_image } = user;
+        // Destructure 'username' and 'profile_image' from the 'user' object
+        const { username, profile_image } = user;
 
-            localStorage.setItem("token", token);
-            localStorage.setItem("userData", JSON.stringify(user))
+        localStorage.setItem("token", token);
+        localStorage.setItem("userData", JSON.stringify(user))
 
-            // Update token state to true to indicate user is logged in
-            setTokenExist(true);
-            // Update the user data state
-            setUserData({ username, profile_image })
+        // Update token state to true to indicate user is logged in
+        setIsTokenExist(true)
 
-            notifyLoginSuccess(); // Notify the user of a successful login
-            toggleModal();   // Close the authentication modal
-        }
-        catch (error) {
-            console.error("Login failed:", error.response.data.message);
-            toast.error(`Login failed:${error.response.data.message} Please try again.`, { position: 'top-right', autoClose: 4000 });
-        }
+        // Update the user data state
+        setUserData({ username, profile_image })
+
+        notifyLoginSuccess();  // Notify the user of a successful login
+        toggleModal();   // Close the authentication modal
+        /*  } */
+        /*  catch (error) {
+             console.error("Login failed:", error.response.data.message);
+             toast.error(`Login failed:${error.response.data.message} Please try again.`, { position: 'top-right', autoClose: 4000 });
+         } */
     }
 
     return (
-        <div className="animate-fade-down animate-delay-150 animate-once fixed inset-0 flex items-center justify-center z-50">
+        <div className="fixed inset-0 flex items-center justify-center z-50">
 
             {/* Background overlay that darkens the screen when the modal is open. */}
             <div onClick={toggleModal} className="absolute inset-0 bg-black opacity-50"></div>

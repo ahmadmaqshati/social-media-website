@@ -20,7 +20,7 @@ export default function SignupModal({ toggleModal }) {
     }
 
     return (
-        <div className="animate-fade-down animate-delay-150 animate-once fixed inset-0 flex items-center justify-center z-50">
+        <div className="fixed inset-0 flex items-center justify-center z-50">
             <div onClick={toggleModal} className="absolute inset-0 bg-black opacity-50"></div>
 
             <div className="mx-6 bg-white rounded-lg p-8 z-50 w-96 bg-gradient-to-br from-teal-400 to-gray-700">

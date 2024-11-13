@@ -1,21 +1,36 @@
 import React from 'react';
-import AuthModal from './AuthModal';
+import { useContext } from 'react';
+import { AuthBtnsContext } from '../contexts/AuthBtnsContext';
 
-export default function AuthButtons({ isTokenExist, toggleModal, setClickedButton, handleLogout, userData }) {
+export default function AuthButtons() {
+
+    // Use context and destructure necessary values and functions from AuthBtnsContext 
+    const {
+        toggleModal,
+        setAuthType,
+        isTokenExist,
+        userData,
+        handleLogout
+    } = useContext(AuthBtnsContext);
+
     // Function to render auth buttons based on the user's token status
     function ControlrenderAuthBtns() {
         if (isTokenExist) {
-            // Render Logout button if the user is authenticated
+            // If the user is logged in (the user is authenticated) =>
+            // Render Logout button 
             return (
                 <div className='flex items-center gap-2'>
+                    {/* user's profile image */}
                     <img src={userData.profile_image} alt=""
-
                         className="profile-img w-[35px] h-[35px] rounded-full inline"
                     />
+
+                    {/* user's username */}
                     <span className='font-semibold tracking-tight text-sm'>
                         {userData.username}
                     </span>
 
+                    {/* Logout button */}
                     <button
                         onClick={() => {
                             handleLogout()
@@ -27,21 +42,26 @@ export default function AuthButtons({ isTokenExist, toggleModal, setClickedButto
                 </div>)
         }
         else {
-            // Render Login and Signup buttons if the user is not authenticated
+            // If the user is not logged in (the user is not authenticated) =>
+            // Render Login and Signup buttons
             return (
                 <>
+                    {/* Login button */}
                     <button
                         onClick={() => {
-                            setClickedButton('login')
+                            setAuthType('login')
                             toggleModal()
+
                         }}
                         type="button"
                         className="border-[1px] border-slate-800 inline-flex items-center rounded-md px-3 py-2 font-medium text-green-700 shadow-sm hover:bg-indigo-500  hover:text-yellow-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 animate-fade-down animate-delay-300 animate-once">
                         Login
                     </button>
+
+                    {/* Signup button */}
                     <button
                         onClick={() => {
-                            setClickedButton('signup')
+                            setAuthType('signup')
                             toggleModal()
                         }}
                         type="button"
@@ -51,9 +71,10 @@ export default function AuthButtons({ isTokenExist, toggleModal, setClickedButto
                 </>)
         }
     }
-    // Render the appropriate authentication buttons
+
     return (
         <>
+            {/* Render the appropriate buttons */}
             {ControlrenderAuthBtns()}
         </>
     )

@@ -1,4 +1,4 @@
-/* import { createContext } from "react";
+import { createContext } from "react";
 
 export let AuthBtnsContext = createContext({
     toggleModal: null,
@@ -9,5 +9,10 @@ export let AuthBtnsContext = createContext({
         username: '',
         profile_image: '',
     },
-    setUserData: null
-}) */
+    setUserData: null,
+    setIsTokenExist: null,
+    isAuthModalOpen: null,
+    notifyLoginSuccess: null
+})
+
+
