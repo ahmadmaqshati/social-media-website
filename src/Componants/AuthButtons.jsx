@@ -18,6 +18,7 @@ export default function AuthButtons() {
         if (isTokenExist) {
             // If the user is logged in (the user is authenticated) =>
             // Render Logout button 
+
             return (
                 <div className='flex items-center gap-2'>
                     {/* user's profile image */}
@@ -44,6 +45,7 @@ export default function AuthButtons() {
         else {
             // If the user is not logged in (the user is not authenticated) =>
             // Render Login and Signup buttons
+
             return (
                 <>
                     {/* Login button */}
@@ -72,9 +74,9 @@ export default function AuthButtons() {
         }
     }
 
+    /* inject logic into jsx */
     return (
         <>
-            {/* Render the appropriate buttons */}
             {ControlrenderAuthBtns()}
         </>
     )

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css'
 import MainPosts from './Pages/PostsPages/MainPosts';
-import TopNav from './Componants/TopNav';
+import MainNavigation from './Componants/MainNavigation';
 import Profile from './Pages/ProfilePage/Profile';
 //Libraries
 import axios from 'axios';
@@ -34,7 +34,7 @@ export default function App() {
   return (
     <>
       <BrowserRouter>
-        <TopNav baseUrl={baseUrl} />
+        <MainNavigation baseUrl={baseUrl} />
         <Routes>
           <Route path='/' element={renderedPosts} />
           <Route path='/home' element={renderedPosts} />

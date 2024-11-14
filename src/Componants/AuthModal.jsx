@@ -4,8 +4,7 @@ import { useContext } from 'react';
 import { AuthBtnsContext } from '../contexts/AuthBtnsContext';
 export default function AuthModal() {
 
-    // Use context to access authentication-related information and functions
-    // Destructure necessary values and functions from AuthBtnsContext 
+    // Use context and destructure necessary values and functions from AuthBtnsContext 
     const { isAuthModalOpen,
         toggleModal,
         authType,

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { AuthBtnsContext } from "../contexts/AuthBtnsContext";
 import { useState, useContext } from "react";
-export default function LoginModal({ /* handleLoginSubmit, toggleModal, setTokenExist, setUserData, notifyLoginSuccess  */ }) {
+export default function LoginModal() {
     const [loginInputs, setLoginInputs] = useState({
         usernameInput: 'ahamdyarob',
         passwordInput: '123456'
@@ -19,8 +19,7 @@ export default function LoginModal({ /* handleLoginSubmit, toggleModal, setToken
     };
 
 
-    // Use context to access authentication-related information and functions
-    // Destructure necessary values and functions from AuthBtnsContext 
+    // Use context and destructure necessary values and functions from AuthBtnsContext 
     const {
         setIsTokenExist,
         toggleModal,
