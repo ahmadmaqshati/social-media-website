@@ -1,6 +1,6 @@
 export default function Profile() {
     return (
-        <div className="mx-3">
+        <div className="mx-4">
             <div className="shadow-md mt-20 container mx-auto max-w-5xl bg-white pt-12 pb-12 px-5 rounded-lg">
                 <div className="profile flex items-center">
                     {/* USER IMAGE COL */}
@@ -9,7 +9,8 @@ export default function Profile() {
                             id="main-info-image"
                             src="/user.png"
                             alt=""
-                            className="profile-img w-[120px] h-[120px] md:w-30 md:h-30 rounded-full"
+                            className="profile-img w-[120px] h-[120px] md:w-30 md:h-30 rounded-full border-2 border-gray-100"
+                        /* style={{ borderColor: 'rgba(222, 226, 230, 0.4)' }} */
                         />
                     </div>
                     {/*// USER IMAGE COL //*/}

@@ -10,6 +10,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 export default function App() {
   const [postsList, setPostsList] = useState([])
   const baseUrl = 'https://tarmeezAcademy.com/api/v1/'
+
   async function getPosts() {
     try {
       const res = await axios.get(`${baseUrl}posts`)
@@ -26,18 +27,19 @@ export default function App() {
     getPosts()
   }, [])
 
-  // Mapping over the postList to render MainPosts for each post
-  const renderedPosts = postsList.map((post) => {
-    return <MainPosts key={post.id} post={post} />
-  })
-
   return (
     <>
       <BrowserRouter>
-        <MainNavigation baseUrl={baseUrl} />
+        <MainNavigation />
         <Routes>
-          <Route path='/' element={renderedPosts} />
-          <Route path='/home' element={renderedPosts} />
+          <Route path='/' element={postsList.map(post =>
+            <MainPosts key={post.id} post={post} />
+          )} />
+
+          <Route path='/home' element={postsList.map(post =>
+            <MainPosts key={post.id} post={post} />
+          )} />
+
           <Route path='/profile' element={<Profile />} />
 
         </Routes>

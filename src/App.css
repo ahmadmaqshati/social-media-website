@@ -82,4 +82,8 @@ body {
   #main-info {
     font-size: 0.88rem;
   }
+  .profile-img{
+    border: 0;
+    height: 110px;
+  }
 }

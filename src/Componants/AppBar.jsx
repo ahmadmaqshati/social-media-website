@@ -17,7 +17,7 @@ export default function AppBar() {
     return (
 
         <div>
-            <header className="sticky inset-x-0 top-0 z-50 mx-6">
+            <header className="sticky inset-x-0 top-0 z-50 mx-4">
                 <div style={{ background: "#F9F7FB" }} className="container mx-auto max-w-5xl">
                     {/* Navigation bar with shadow effect */}
                     <nav className="shadow-md nav flex items-center justify-between p-6 lg:px-8" aria-label="Global">
