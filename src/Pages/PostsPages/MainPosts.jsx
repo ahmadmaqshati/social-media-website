@@ -10,7 +10,9 @@ export default function MainPosts({ post }) {
     } = post
 
     return (
-        <div className="animate-fade-left animate-delay-300 animate-once max-w-full rounded overflow-hidden mt-10 mx-6 mb-7">
+        <div className="animate-fade-up animate-duration-[1000ms] animate-delay-500 animate-once max-w-full rounded overflow-hidden mt-10 mx-6 mb-7">
+
+
             <div style={{ background: "#F9F7FB" }} className='container mx-auto max-w-5xl'>
 
                 {/* post-header */}
@@ -29,6 +31,7 @@ export default function MainPosts({ post }) {
                 </div>
 
                 <hr className="border-slate-300 dark:border-white"></hr>
+
 
                 {/* post-content */}
                 <div className='bg-white pt-2'>
@@ -52,20 +55,53 @@ export default function MainPosts({ post }) {
                         </div>
                         <h1 className='text-xl text-slate-800'>{title}</h1>
                         <p className='text-sm'>{body}</p>
-                        <hr className="border-slate-400 dark:border-white mt-1"></hr>
+                        <hr className="border-slate-400 dark:border-white mt-3 mb-1 "></hr>
                     </div>
 
-                    <div className="flex gap-2 items-center" style={{ padding: "10px 15px" }}>
-                        <svg className="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path className='text-slate-700' strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    <div className="flex gap-2 items-center px-[15px] pt-2 pb-4">
+                        <svg className="h-5 w-5 text-red-500 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path className='text-gray-500' strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                         </svg>
-                        <h1 className=''>({comments_count}) Comments</h1>
-                    </div>
+                        <h1 className="flex items-center gap-2">({comments_count})
+                            <div className="z-10 bg-slate-200 w-9 h-6 rounded-lg flex justify-center items-center shadow-lg">
+                                {/* <span className="text-white text-2xl font-bold"></span> */}
+                                <svg className="cursor-pointer mt-[5px]" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0z" />
+                                    <path fill="#6B7280" d="M20 2H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-2 10H6V9h12v3zm0-4H6V5h12v3z" />
+                                </svg>
+                            </div>
 
+                        </h1>
+
+                    </div>
                 </div>
                 {/* ==post-content== */}
 
             </div>
         </div>
     )
-}   
+}
+/* 
+ <svg className="mt-1 cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path d="M21 6h-2v9H5v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 10H4V4h13v12z" />
+                            </svg>
+
+
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40">
+                                <path d="M12 2C6.48 2 2 6.48 2 12c0 3.32 2.03 6.16 4.99 7.68V22l5.67-2.68C13.43 18.98 14.7 19 16 19c5.52 0 10-4.48 10-10S17.52 2 12 2z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none" /><path d="M21 6h-2v9H5v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 10H4V4h13v12z" /></svg>
+
+
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="none" d="M0 0h24v24H0z" />
+                                <path d="M20 2H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-2 10H6V9h12v3zm0-4H6V5h12v3z" />
+                            </svg>
+
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none" /><path d="M21 6h-2v9H5v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 10H4V4h13v12z" /></svg>
+
+                      
+*/
