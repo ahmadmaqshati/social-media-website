@@ -5,8 +5,6 @@
   letter-spacing: 0.6px;
 }
 
-
-
 *,
 *::before,
 *::after {
@@ -25,10 +23,8 @@ html body {
   overflow-x: inherit;
 }
 
-
 body {
-  background-color: #EEE8FF;
-
+  background-color: #eee8ff;
 }
 
 .nav {
@@ -38,15 +34,13 @@ body {
 .a {
   font-size: 1rem !important;
   font-weight: 500 !important;
-  color: #4A2E19 !important;
+  color: #4a2e19 !important;
   transition: all 0.3s;
 }
 
 .a:hover {
   color: rgb(30, 30, 174) !important;
 }
-
-
 
 @keyframes wiggle-more {
   from {
@@ -82,16 +76,13 @@ body {
   #main-info {
     font-size: 0.88rem;
   }
-  .profile-img{
+  .profile-img {
     border: 0;
     height: 110px;
   }
 }
 
-
-
-
-  /* App.css */
+/* App.css */
 
 /* تصميم اللودر */
 .lds-roller {
@@ -111,13 +102,13 @@ body {
 }
 
 .lds-roller div:after {
-  content: " ";
+  content: ' ';
   display: block;
   position: absolute;
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: rgb(255, 255, 255);
+  background: rgb(121 85 72 / 85%);
   margin: -4px 0 0 -4px;
 }
 
@@ -201,11 +192,8 @@ body {
     transform: rotate(360deg);
   }
 }
-    
 
-
-.facebook-icon{
+.facebook-icon {
   width: 200px !important;
   height: 20 !important;
 }
-.icon-background { width: 100px; /* تحديد العرض */ height: 100px; /* تحديد الارتفاع */ background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" fill="%234267B2"><path d="M622 976V616h96l14-112h-110v-72q0-27 11.5-42.5T661 374h71V266q-29-3-66.5-4.5T632 260q-75 0-119 44t-44 124v76H364v112h105v360h153z"/></svg>') no-repeat center center; background-size: contain; /* التكيف مع حجم العنصر */ }

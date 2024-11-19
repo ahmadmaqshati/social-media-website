@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
-import './App.css';  // تأكد من استيراد CSS
+import './App.css'; // تأكد من استيراد CSS
 import MainNavigation from './Componants/MainNavigation';
 import Profile from './Pages/ProfilePage/Profile';
 //Libraries
 import axios from 'axios';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PostList from './Componants/PostList';
+import PostDetails from './Pages/PostDetails/PostDetails';
 
 export default function App() {
   const [postsList, setPostsList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // State to keep track of the current page for pagination
   const [lastPage, setLastPage] = useState(1);
-  const [loading, setLoading] = useState(false); // State to indicate if data is being loaded 
+  const [loading, setLoading] = useState(false); // State to indicate if data is being loaded
 
   const baseUrl = 'https://tarmeezAcademy.com/api/v1/';
 
@@ -31,9 +32,8 @@ export default function App() {
       Otherwise, it combines the existing posts (currentPosts) with the newly fetched posts (newPosts)  
       using the spread operator (...). */
       setPostsList((currentPosts) =>
-        page === 1 ? newPosts : [...currentPosts, ...newPosts]
+        page === 1 ? newPosts : [...currentPosts, ...newPosts],
       );
-
     } catch (error) {
       console.error('Error loading posts: ' + error.message);
       // يمكنك هنا إضافة رسالة خطأ للمستخدم أو التعامل مع الخطأ بشكل مناسب
@@ -44,7 +44,6 @@ export default function App() {
     }
   }
 
-
   // Effect to handle infinite scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -53,7 +52,11 @@ export default function App() {
       const scrollY = window.scrollY;
 
       // Check if the user has scrolled to the bottom of the page
-      if (innerHeight + scrollY >= scrollHeight - 100 && currentPage < lastPage && !loading) {
+      if (
+        innerHeight + scrollY >= scrollHeight - 100 &&
+        currentPage < lastPage &&
+        !loading
+      ) {
         setCurrentPage((prevPage) => prevPage + 1);
       }
     };
@@ -81,16 +84,17 @@ export default function App() {
           </div>
         )}
 
-
-
         <Routes>
-          <Route path='/' element={<PostList postsList={postsList} />} />
-          <Route path='/home' element={<PostList postsList={postsList} />} />
-          <Route path='/profile' element={<Profile />} />
+          <Route path="/" element={<PostList postsList={postsList} />} />
+          <Route path="/home" element={<PostList postsList={postsList} />} />
+          <Route
+            path="/post/:postId"
+            element={<PostDetails postsList={postsList} />}
+          />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </>
   );
 }
-
-
+/* PostDetails */

@@ -1,12 +1,20 @@
-import { Link } from 'react-router-dom';
+// Pages/PostDetail.js
+import React from 'react';
+import { Link, useParams } from 'react-router-dom';
 
-export default function MainPosts({ post }) {
-  //Destructure the post object to extract relevant properties
-  const { id, title, image, comments_count, created_at, body, author } = post;
+const PostDetails = ({ postsList }) => {
+  const { postId } = useParams();
+  /* Find the post in the postsList that matches the given postId.
+   and returns the first matching post object 
+  or undefined if not found. */
+  const post = postsList.find((p) => p.id === parseInt(postId));
+  if (!post) return <div>Post not found</div>;
+
+  const { title, image, comments_count, created_at, body, author } = post;
 
   return (
-    <Link to={`/post/${id}`}>
-      <div className="animate-fade-up animate-duration-[1000ms] animate-delay-500 animate-once max-w-full rounded overflow-hidden mt-10 mx-4 mb-7">
+    <>
+      <div className="animate-fade-up animate-duration-[1000ms] animate-delay-500 animate-once max-w-full rounded overflow-hidden mt-10 mx-4">
         <div
           style={{ background: '#F9F7FB' }}
           className="container mx-auto max-w-5xl"
@@ -105,12 +113,55 @@ export default function MainPosts({ post }) {
                 </div>
               </h1>
             </div>
+            <div
+              id="input-btn-div"
+              className="w-full flex mb-3 mt-3 mx-auto px-[15px] pb-[17px]"
+            >
+              <input
+                id="comment-input"
+                type="text"
+                className="w-full bg-gray-200 border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="add your comment"
+              />
+              <div className="flex-shrink-0">
+                <button className="bg-[#498486] text-white border border-blue-900 rounded-r-md px-4 py-2 hover:bg-blue-950">
+                  send
+                </button>
+              </div>
+            </div>
           </div>
+
           {/* ==post-content== */}
         </div>
       </div>
-    </Link>
+
+      <div className="animate-fade-up animate-duration-[1000ms] animate-delay-500 animate-once max-w-full rounded overflow-hidden mx-4 mb-7">
+        <div className="container mx-auto max-w-5xl">
+          <Link
+            to={'/'}
+            id="input-btn-div"
+            className="w-full flex mx-auto pb-[17px]"
+          >
+            <button className="font-medium bg-[#498486] text-white px-4 py-2 rounded mb-4 max-w-5xl hover:bg-blue-950 active:bg-blue-00 transition-all duration-300">
+              Back to Posts
+            </button>
+          </Link>
+
+          {/* ==post-content== */}
+        </div>
+      </div>
+    </>
   );
-}
-/* Link
-      to={`/post/${id}`} */
+};
+
+export default PostDetails;
+/* 
+ <div>
+        <button
+          onClick={() => navigate(-1)}
+          className="bg-blue-500 text-white px-4 py-2 rounded mb-4 max-w-5xl ml-[109px] hover:bg-blue-600 active:bg-blue-700 transition-all duration-300"
+        >
+          الرجوع للبوستات الرئيسية
+        </button>
+      </div>
+*/
