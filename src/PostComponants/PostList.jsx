@@ -1,4 +1,4 @@
-import MainPosts from '../Pages/PostsPages/MainPosts';
+import MainPosts from '../Pages/PostsPage/MainPosts';
 
 export default function PostList({ postsList }) {
   return (

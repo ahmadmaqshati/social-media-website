@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import './App.css'; // تأكد من استيراد CSS
-import MainNavigation from './Componants/MainNavigation';
+import MainNavigation from './TopNavComponants/MainNavigation';
 import Profile from './Pages/ProfilePage/Profile';
 //Libraries
 import axios from 'axios';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import PostList from './Componants/PostList';
-import PostDetails from './Pages/PostDetails/PostDetails';
+import PostList from './PostComponants/PostList';
+import PostDetails from './Pages/PostDetailsPage/PostDetails';
 
 export default function App() {
   const [postsList, setPostsList] = useState([]);
@@ -88,7 +88,7 @@ export default function App() {
           <Route path="/" element={<PostList postsList={postsList} />} />
           <Route path="/home" element={<PostList postsList={postsList} />} />
           <Route
-            path="/post/:postId"
+            path="/postdetails/:postId"
             element={<PostDetails postsList={postsList} />}
           />
           <Route path="/profile" element={<Profile />} />
