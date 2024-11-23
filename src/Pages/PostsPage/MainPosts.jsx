@@ -1,4 +1,7 @@
+// React Libraries
 import { Link } from 'react-router-dom';
+
+// PostDetails Components
 import PostHeader from '../../PostComponants/PostHeader';
 import PostFooter from '../../PostComponants/PostFooter';
 import PostContent from '../../PostComponants/PostContent';

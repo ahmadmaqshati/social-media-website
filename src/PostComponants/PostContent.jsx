@@ -1,14 +1,13 @@
-import React from 'react';
-
 export default function PostContent({ post }) {
   const { title, image, created_at, body } = post;
 
   return (
     <>
-      <div style={{ padding: '10px 15px' }}>
+      <div className="py-[10px] px-[15px]">
         {/* Check if 'image' is a string before rendering the image */}
         {typeof image === 'string' ? (
           <img
+            loading="lazy"
             style={{ height: '100%', objectFit: 'cover' }}
             className="w-full"
             src={

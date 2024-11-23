@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function PostFooter({ post }) {
   const { comments_count } = post;
 

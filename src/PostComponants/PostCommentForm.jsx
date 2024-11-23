@@ -1,4 +1,4 @@
-export default function PostCommentForm() {
+export default function PostCommentForm({ handleCommentSend }) {
   return (
     <div
       id="input-btn-div"
@@ -11,7 +11,10 @@ export default function PostCommentForm() {
         placeholder="add your comment"
       />
       <div className="flex-shrink-0">
-        <button className="bg-[#498486] text-white border border-blue-900 rounded-r-md px-4 py-2 hover:bg-blue-950">
+        <button
+          onClick={handleCommentSend}
+          className="bg-[#498486] text-white border border-blue-900 rounded-r-md px-4 py-2 hover:bg-blue-950"
+        >
           Send {/* Button to submit the comment */}
         </button>
       </div>

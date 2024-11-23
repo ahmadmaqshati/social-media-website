@@ -87,6 +87,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<PostList postsList={postsList} />} />
           <Route path="/home" element={<PostList postsList={postsList} />} />
+
           <Route
             path="/postdetails/:postId"
             element={<PostDetails postsList={postsList} />}
