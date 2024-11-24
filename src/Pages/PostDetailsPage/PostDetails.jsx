@@ -9,6 +9,7 @@ import PostFooter from '../../PostComponants/PostFooter';
 import PostContent from '../../PostComponants/PostContent';
 import PostCommentForm from '../../PostComponants/PostCommentForm';
 import BackButtonToPosts from '../../PostComponants/BackButtonToPosts';
+import PostComments from '../../PostComponants/PostComments';
 
 export default function PostDetails({ postsList }) {
   const [postDetails, setPostDetails] = useState([]);
@@ -40,12 +41,11 @@ export default function PostDetails({ postsList }) {
       }
     };
 
-    // Call the function to fetch the post and its comments
     fetchPostAndComments();
   }, [postId]); // Dependency array, re-run the effect when postId changes
 
   // Map over the postDetails (comments) and create JSX for each comment
-  const commentsList = postDetails.map((comment) => {
+  /* const commentsList = postDetails.map((comment) => {
     return (
       <div
         key={comment.id}
@@ -65,7 +65,7 @@ export default function PostDetails({ postsList }) {
         </div>
       </div>
     );
-  });
+  }); */
 
   // If no post is found with the given postId, show a 'not found' message
   if (!post)
@@ -89,8 +89,8 @@ export default function PostDetails({ postsList }) {
                 <PostFooter post={post} />
 
                 {/* Render the comments */}
-                {commentsList}
-
+                {/* {commentsList} */}
+                <PostComments postDetails={postDetails} />
                 {/* Render the form for adding a new comment */}
                 <PostCommentForm />
               </section>
@@ -101,7 +101,7 @@ export default function PostDetails({ postsList }) {
       </div>
       {/* Footer with a back button to return to the MainPosts Page */}
       <footer>
-        <BackButtonToPosts>Back to Posts</BackButtonToPosts>
+        <BackButtonToPosts />
       </footer>
     </>
   );
